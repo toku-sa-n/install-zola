@@ -1,0 +1,17 @@
+name: 'Install Zola'
+description: 'Install [Zola](https://github.com/getzola/zola) from the source code'
+
+inputs:
+  enable-japanese:
+    description: "Enables Japanese support"
+    default: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Fetch Zola's source code
+      run: git clone https://github.com/getzola/zola
+
+    - name: Install a Zola executable
+      run: cargo install --path . --features search/indexing-ja
+      working-directory: zola
